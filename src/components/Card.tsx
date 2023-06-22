@@ -1,8 +1,9 @@
 // src/components/Card.tsx
 
 import * as React from "react";
-import { CardProps } from "@yext/search-ui-react";
+import { CardProps, DirectAnswer } from "@yext/search-ui-react";
 import { provideSearchAnalytics } from "@yext/analytics";
+import { Markdown, LexicalRichText } from "@yext/react-components";
 
 //replace with the vertical typescript interface this custom card applies to
 import HelpArticle from "../types/help_articles";
@@ -24,7 +25,7 @@ const Card = ({
     const data: any = {
         name: result.rawData.name,
         answer: result.rawData.body.slice(0,500),
-        landingPageUrl: result.rawData.landingPageUrl,
+        landingPageUrl: result.rawData.slug,
         category: result.rawData.externalArticleUpdateDate,
         // cta1: result.rawData.c_primaryCTA,
         // cta2: result.rawData.c_secondaryCTA
@@ -73,6 +74,8 @@ const Card = ({
                         )}
                     </div>
                 <div className="description py-2 flex justify-between">
+                   <LexicalRichText
+                    />
                     {data.answer}...
                 </div>
             </div>
