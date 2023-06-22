@@ -10,7 +10,7 @@ import {
   } from "@yext/search-headless-react";
 
 import UniversalSearch from "./UniversalSearch";
-import VerticalSearch from "./VerticalSearch";
+import VerticalSearch from "./HelpArticleSearch";
 import VerticalNav from "./VerticalNav";
 
 const SearchExperience = () => {
@@ -21,11 +21,11 @@ const SearchExperience = () => {
       <div className="px-4 py-8">
         <div className="mx-auto flex max-w-5xl flex-col">
           <h1 className="pb-4 text-center text-3xl font-bold text-blue-700">
-            Basic Search
+            Help Article Search
           </h1>
           <SearchBar placeholder="Search"/>
           <VerticalNav />
-          {currentVertical === "faqs" ? (<VerticalSearch/>) :
+          {currentVertical === "help_articles" ? (<VerticalSearch/>) :
           //comment out below to add a new vertical
           //  currentVertical === "REPLACE ME" ? (<REPLACE_ME/>) :
            (<UniversalSearch />)}

@@ -60,7 +60,7 @@ const VerticalSearch = () => {
               <p>
                 The search
                 <span className="mx-1 font-semibold">{mostRecentSearch}</span>
-                did not match any FAQs.
+                did not match any Help Articles.
               </p>
             </div>
           )}

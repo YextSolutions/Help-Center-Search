@@ -26,8 +26,8 @@ const UniversalSearch = () => {
           </div>
             <UniversalResults
               verticalConfigMap={{
-                  faqs: {
-                      label: "FAQs",
+                help_articles: {
+                      label: "Help Articles",
                       CardComponent: Card
                   },
                 // uncomment below to add an additonal vertical configuration
