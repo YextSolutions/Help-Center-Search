@@ -17,6 +17,7 @@ import {
 } from "@yext/pages";
 import * as React from 'react';
 import "../index.css";
+import { Markdown, LexicalRichText } from "@yext/react-components";
 
 /**
  * Required when Knowledge Graph Stream is used for a template.
@@ -29,7 +30,8 @@ export const config: TemplateConfig = {
     fields: [ "id", 
               "name",
               "slug", 
-              "body", 
+              "body",
+              "c_lexicalRichText", 
               "shortDescription", 
               "voteCount",
               "voteSum", 
@@ -109,6 +111,7 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
 }) => {
   const { name, 
           body,
+          c_lexicalRichText,
           shortDescription,
           voteCount,
           voteSum,
@@ -117,45 +120,54 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
           externalArticleUpdateDate,
       } = document;
     
-      return (
-        <div className="p-2 rounded mx-8">
-          {name && (
-            <h1 className="text-3xl font-bold mb-4">{name}</h1>
-          )}
-          {shortDescription && (
-            <div className="callout-box p-2 bg-white rounded-lg shadow mb-2">
-              <p className="text-lg italic">{shortDescription}</p>
-            </div>
-          )}
-          {voteCount !== null && voteSum !== null && (
-            <div className="flex items-center mb-2">
-              <span className="mr-2 text-gray-500">{voteCount} votes</span>
-              <span className="text-gray-500">|</span>
-              <span className="ml-2 text-gray-500">Total vote sum: {voteSum}</span>
-            </div>
-          )}
-          {promoted && (
-            <div className="mb-2 p-1 bg-green-500 text-white font-bold">
-              Promoted
-            </div>
-          )}
-          {body && (
-            <div className="prose">
-              <>{body}</>
-            </div>
-          )}
-          {externalArticlePostDate && (
-            <p className="text-sm mt-2 text-gray-500">
-              Original article posted: {externalArticlePostDate}
-            </p>
-          )}
-          {externalArticleUpdateDate && (
-            <p className="text-sm text-gray-500">
-              Article last updated: {externalArticleUpdateDate}
-            </p>
-          )}
-        </div>
-      );
+return (
+  <div>
+    <h1 className="text-3xl font-bold mb-4 p-4 shadow-xl text-left">Help Center</h1> {/* Header with big drop shadow */}
+    <div className="p-6 my-4 rounded mx-12">
+    {name && (
+      <h1 className="text-2xl font-bold mb-4">{name}</h1>
+    )}
+    {shortDescription && (
+      <div className="callout-box p-6 bg-white rounded-lg shadow-md mb-4"> {/* Increased padding (p-6) and smaller drop shadow (shadow-md) */}
+        <p className="text-lg italic">{shortDescription}</p>
+      </div>
+    )}
+    {voteCount !== null && voteSum !== null && (
+      <div className="flex items-center mb-4">
+        <span className="mr-2 text-gray-500">{voteCount} votes</span>
+        <span className="text-gray-500">|</span>
+        <span className="ml-2 text-gray-500">Total vote sum: {voteSum}</span>
+      </div>
+    )}
+    {promoted && (
+      <div className="mb-4 p-2 bg-green-500 text-white font-bold">
+        Promoted
+      </div>
+    )}
+    {body && (
+      <div className="prose">
+        <LexicalRichText
+          serializedAST={JSON.stringify(c_lexicalRichText.json)}
+        />
+      </div>
+    )}
+    {externalArticlePostDate && (
+      <p className="text-sm mt-4 text-gray-500">
+        Original article posted: {externalArticlePostDate}
+      </p>
+    )}
+    {externalArticleUpdateDate && (
+      <p className="text-sm text-gray-500">
+        Article last updated: {externalArticleUpdateDate}
+      </p>
+    )}
+    </div>
+  </div>
+);
+
+
+
+
 };
 
 export default HelpArticlePage;
