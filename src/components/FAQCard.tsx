@@ -63,7 +63,7 @@ const FAQCard = ({
 
     return (
         <div className="mb-4 justify-between rounded-lg border p-4 text-stone-900 shadow-sm">
-          <div className="body flex flex-col">
+          <div className="body">
             <div
               className="title text-lg font-semibold text-blue-700 hover:underline cursor-pointer"
               onClick={handleToggle}
@@ -75,7 +75,7 @@ const FAQCard = ({
               ></span>
             </div>
             {!isCollapsed && (
-              <div className="description py-2 flex justify-between">
+              <div className="description py-2 justify-between">
                 {data.answer}
               </div>
             )}

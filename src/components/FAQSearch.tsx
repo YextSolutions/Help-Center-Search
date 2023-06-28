@@ -32,8 +32,8 @@ const FAQVerticalSearch = () => {
             {resultsCount > 0 && (
               <>
               <ResultsCount />
-              <div className="flex">
-                  <div className="mr-5 w-56 shrink-0">
+              <div className="">
+                  {/* <div className="mr-5 w-56 shrink-0">
                     <div className="flex flex-col rounded border bg-zinc-100 p-4 shadow-sm">
                         <Facets>
                           <StandardFacet
@@ -46,7 +46,7 @@ const FAQVerticalSearch = () => {
                           />
                         </Facets>
                     </div>
-                  </div>
+                  </div> */}
                   <VerticalResults
                   CardComponent={FAQCard}
                   displayAllOnNoResults={false}
