@@ -123,7 +123,7 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
 return (
   <div>
     <h1 className="text-3xl font-bold mb-4 p-4 shadow-xl text-left">Help Center</h1> {/* Header with big drop shadow */}
-    <div className="p-6 my-4 rounded mx-12">
+    <div className="p-8 my-6 rounded mx-12">
     {name && (
       <h1 className="text-2xl font-bold mb-4">{name}</h1>
     )}
@@ -134,9 +134,9 @@ return (
     )}
     {voteCount !== null && voteSum !== null && (
       <div className="flex items-center mb-4">
-        <span className="mr-2 text-gray-500">{voteCount} votes</span>
+        <span className="mr-2 text-gray-500">{voteCount} Votes</span>
         <span className="text-gray-500">|</span>
-        <span className="ml-2 text-gray-500">Total vote sum: {voteSum}</span>
+        <span className="ml-2 text-gray-500">Total Vote Sum: {voteSum}</span>
       </div>
     )}
     {promoted && (
@@ -153,12 +153,12 @@ return (
     )}
     {externalArticlePostDate && (
       <p className="text-sm mt-4 text-gray-500">
-        Original article posted: {externalArticlePostDate}
+        Original Article Posted: {externalArticlePostDate}
       </p>
     )}
     {externalArticleUpdateDate && (
       <p className="text-sm text-gray-500">
-        Article last updated: {externalArticleUpdateDate}
+        Article Last Updated: {externalArticleUpdateDate}
       </p>
     )}
     </div>

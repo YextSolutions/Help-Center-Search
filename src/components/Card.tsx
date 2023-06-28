@@ -27,7 +27,7 @@ const Card = ({
         answer: result.rawData.body.slice(0,500),
         landingPageUrl: result.rawData.slug,
         category: result.rawData.externalArticleUpdateDate,
-        // lexical: result.rawData.c_lexicalRichText.slice(0,500)
+        lexical: result.rawData.c_lexicalRichText
         // cta1: result.rawData.c_primaryCTA,
         // cta2: result.rawData.c_secondaryCTA
     }
@@ -76,7 +76,7 @@ const Card = ({
                     </div>
                 <div className="description py-2 flex justify-between">
                     <LexicalRichText
-                        serializedAST={JSON.stringify(answer.json)}
+                        serializedAST={JSON.stringify(data.lexical.json)}
                     />
                 </div>
             </div>
