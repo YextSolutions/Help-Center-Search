@@ -17,7 +17,7 @@ export const searchAnalytics = provideSearchAnalytics({
   businessId: businessId
 })
 
-const Card = ({
+const articleCard = ({
     result,
     //replace the interface FAQ with the typescript interface of your vertical
   }: CardProps<HelpArticle>) => {
@@ -84,4 +84,4 @@ const Card = ({
     )
 };
 
-export default Card;
+export default articleCard;

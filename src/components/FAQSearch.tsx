@@ -14,9 +14,9 @@ import {
   useSearchState
   } from "@yext/search-headless-react";
 
-import articleCard from "./ArticleCard";
+import FAQCard from "./FAQCard";
 
-const HelpArticleVerticalSearch = () => {
+const FAQVerticalSearch = () => {
 
     const mostRecentSearch = useSearchState(
         (state) => state.query.mostRecentSearch
@@ -48,7 +48,7 @@ const HelpArticleVerticalSearch = () => {
                     </div>
                   </div>
                   <VerticalResults
-                  CardComponent={articleCard}
+                  CardComponent={FAQCard}
                   displayAllOnNoResults={false}
                   />
               </div>
@@ -60,7 +60,7 @@ const HelpArticleVerticalSearch = () => {
               <p>
                 The search
                 <span className="mx-1 font-semibold">{mostRecentSearch}</span>
-                did not match any Help Articles.
+                did not match any FAQs.
               </p>
             </div>
           )}
@@ -74,4 +74,4 @@ const HelpArticleVerticalSearch = () => {
   );
 };
 
-export default HelpArticleVerticalSearch;
+export default FAQVerticalSearch;

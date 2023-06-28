@@ -18,9 +18,11 @@ export const verticals: Vertical[]= [
       key: "help_articles",
       entityType: "helpArticle"
     },
-    // {
-    //     //comment in to add additional vertical
-    //     showInNav: true,
-    //     label: "All"
-    //   },
+    {
+        //comment in to add additional vertical
+        showInNav: true,
+        label: "FAQs",
+        key: "faqs",
+        entityType: "faq"
+      },
 ]
