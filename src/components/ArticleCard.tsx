@@ -28,9 +28,7 @@ const articleCard = ({
         landingPageUrl: result.rawData.slug,
         category: result.rawData.externalArticleUpdateDate,
         lexical: result.rawData.c_lexicalRichText
-        // cta1: result.rawData.c_primaryCTA,
-        // cta2: result.rawData.c_secondaryCTA
-    }
+        }
 
     //replace below with the appropriate vertical key
     const verticalKey = 'help_articles'

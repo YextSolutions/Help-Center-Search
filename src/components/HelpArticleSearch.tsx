@@ -42,7 +42,7 @@ const HelpArticleVerticalSearch = () => {
                             [...options].sort((a,b) =>
                               a.displayName.localeCompare(b.displayName))
                           }
-                          label="FAQ Category"
+                          label="Category"
                           />
                         </Facets>
                     </div>
