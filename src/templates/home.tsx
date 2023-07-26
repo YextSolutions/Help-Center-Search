@@ -25,16 +25,14 @@ export const config: TemplateConfig = {
     fields: [
       "id",
       "name",
-      "c_coverPhoto",
-      "c_heading",
-      "c_subHeading",
+      "helpstarter_coverPhoto",
+      "helpstarter_heading",
+      "helpstarter_subHeading",
       "slug",
-      "c_featuredArticles.id",
-      "c_featuredArticles.name",
-      "c_featuredArticles.slug",
-      // "blogStarter_featuredBlogs.primaryPhoto",
-      // "blogStarter_featuredBlogs.blogStarter_description",
-      "c_featuredArticles.externalArticlePostDate",
+      "helpstarter_featuredArticles.id",
+      "helpstarter_featuredArticles.name",
+      "helpstarter_featuredArticles.slug",
+      "helpstarter_featuredArticles.externalArticlePostDate",
     ],
     filter: { entityTypes: ["helpstarter_homePage"] },
   },
@@ -79,8 +77,8 @@ export default function Home({ document, __meta }: TemplateProps) {
           alignment="left"
         >
           <BigImage
-            src={document.c_coverPhoto.image.url}
-            alt={document.c_coverPhoto.image.alternateText}
+            src={document.helpstarter_coverPhoto.image.url}
+            alt={document.helpstarter_coverPhoto.image.alternateText}
           />
           <Title
             value="Featured Articles"
@@ -90,7 +88,7 @@ export default function Home({ document, __meta }: TemplateProps) {
             bottomMargin="0"
             textColor="#000000"
           />
-          {document.c_featuredArticles.map(
+          {document.helpstarter_featuredArticles.map(
             (item: HelpArticle, index: string) => (
               <FeaturedBlog
                 name={item.name}

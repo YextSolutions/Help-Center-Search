@@ -31,7 +31,7 @@ export const config: TemplateConfig = {
               "name",
               "slug", 
               "body",
-              "c_helpArticleBodyMarkdown", 
+              "helpstarter_helpArticleBodyMarkdown", 
               "shortDescription", 
               "voteCount",
               "voteSum", 
