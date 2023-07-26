@@ -6,7 +6,7 @@ import { provideSearchAnalytics } from "@yext/analytics";
 import { Markdown, LexicalRichText } from "@yext/react-components";
 
 //replace with the vertical typescript interface this custom card applies to
-import HelpArticle from "../types/help_articles";
+import HelpArticle from "../types/autogen";
 
 import { experienceKey, experienceVersion, businessId } from "../common/consts";
 import { useSearchState } from "@yext/search-headless-react";
@@ -24,10 +24,9 @@ const articleCard = ({
     //pull in the relevant fields from your entity to display on the card
     const data: any = {
         name: result.rawData.name,
-        answer: result.rawData.body.slice(0,500),
         landingPageUrl: result.rawData.slug,
         category: result.rawData.externalArticleUpdateDate,
-        lexical: result.rawData.c_lexicalRichText
+        markdown: result.rawData.c_helpArticleBodyMarkdown
         }
 
     //replace below with the appropriate vertical key
@@ -72,11 +71,9 @@ const articleCard = ({
                             </div>
                         )}
                     </div>
-                <div className="description py-2 flex justify-between">
-                    <LexicalRichText
-                        serializedAST={JSON.stringify(data.lexical.json)}
-                    />
-                </div>
+                {/* <div className="description py-2 flex justify-between">
+                    {data.markdown}
+                </div> */}
             </div>
         </div>
     )

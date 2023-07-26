@@ -31,7 +31,7 @@ export const config: TemplateConfig = {
               "name",
               "slug", 
               "body",
-              "c_lexicalRichText", 
+              "c_helpArticleBodyMarkdown", 
               "shortDescription", 
               "voteCount",
               "voteSum", 
@@ -111,7 +111,7 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
 }) => {
   const { name, 
           body,
-          c_lexicalRichText,
+          c_helpArticleBodyMarkdown,
           shortDescription,
           voteCount,
           voteSum,
@@ -122,7 +122,6 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
     
 return (
   <div>
-    <h1 className="text-3xl font-bold mb-4 p-4 shadow-xl text-left">Help Center</h1> {/* Header with big drop shadow */}
     <div className="p-8 my-6 rounded mx-12">
     {name && (
       <h1 className="text-2xl font-bold mb-4">{name}</h1>
@@ -144,13 +143,11 @@ return (
         Promoted
       </div>
     )}
-    {body && (
+    {/* {body && (
       <div className="prose">
-        <LexicalRichText
-          serializedAST={JSON.stringify(c_lexicalRichText.json)}
-        />
+        {c_helpArticleBodyMarkdown}
       </div>
-    )}
+    )} */}
     {externalArticlePostDate && (
       <p className="text-sm mt-4 text-gray-500">
         Original Article Posted: {externalArticlePostDate}
