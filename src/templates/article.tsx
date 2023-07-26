@@ -18,6 +18,8 @@ import {
 import * as React from 'react';
 import "../index.css";
 import { Markdown, LexicalRichText } from "@yext/react-components";
+import ReactDOM from 'react-dom';
+import ReactMarkdown from 'react-markdown';
 
 /**
  * Required when Knowledge Graph Stream is used for a template.
@@ -104,67 +106,67 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
  * This is the main template. It can have any name as long as it's the default export.
  * The props passed in here are the direct stream document defined by `config`.
  */
+
 const HelpArticlePage: Template<TemplateRenderProps> = ({
   relativePrefixToRoot,
   path,
   document,
 }) => {
-  const { name, 
-          body,
-          c_helpArticleBodyMarkdown,
-          shortDescription,
-          voteCount,
-          voteSum,
-          promoted,
-          externalArticlePostDate,
-          externalArticleUpdateDate,
-      } = document;
-    
-return (
-  <div>
-    <div className="p-8 my-6 rounded mx-12">
-    {name && (
-      <h1 className="text-2xl font-bold mb-4">{name}</h1>
-    )}
-    {shortDescription && (
-      <div className="callout-box p-6 bg-white rounded-lg shadow-md mb-4"> {/* Increased padding (p-6) and smaller drop shadow (shadow-md) */}
-        <p className="text-lg italic">{shortDescription}</p>
-      </div>
-    )}
-    {voteCount !== null && voteSum !== null && (
-      <div className="flex items-center mb-4">
-        <span className="mr-2 text-gray-500">{voteCount} Votes</span>
-        <span className="text-gray-500">|</span>
-        <span className="ml-2 text-gray-500">Total Vote Sum: {voteSum}</span>
-      </div>
-    )}
-    {promoted && (
-      <div className="mb-4 p-2 bg-green-500 text-white font-bold">
-        Promoted
-      </div>
-    )}
-    {/* {body && (
-      <div className="prose">
-        {c_helpArticleBodyMarkdown}
-      </div>
-    )} */}
-    {externalArticlePostDate && (
-      <p className="text-sm mt-4 text-gray-500">
-        Original Article Posted: {externalArticlePostDate}
-      </p>
-    )}
-    {externalArticleUpdateDate && (
-      <p className="text-sm text-gray-500">
-        Article Last Updated: {externalArticleUpdateDate}
-      </p>
-    )}
-    </div>
-  </div>
-);
+  const {
+    name,
+    body,
+    helpstarter_helpArticleBodyMarkdown,
+    shortDescription,
+    voteCount,
+    voteSum,
+    promoted,
+    externalArticlePostDate,
+    externalArticleUpdateDate,
+  } = document;
 
-
-
-
-};
+  // console.log(helpstarter_helpArticleBodyMarkdown)
+  
+  return (
+      <div>
+        <div className="p-8 my-6 rounded mx-12">
+          {name && <h1 className="text-2xl font-bold mb-4">{name}</h1>}
+          {shortDescription && (
+            <div className="callout-box p-6 bg-white rounded-lg shadow-md mb-4">
+              {/* Increased padding (p-6) and smaller drop shadow (shadow-md) */}
+              <p className="text-lg italic">{shortDescription}</p>
+            </div>
+          )}
+          {voteCount !== null && voteSum !== null && (
+            <div className="flex items-center mb-4">
+              <span className="mr-2 text-gray-500">{voteCount} Votes</span>
+              <span className="text-gray-500">|</span>
+              <span className="ml-2 text-gray-500">Total Vote Sum: {voteSum}</span>
+            </div>
+          )}
+          {promoted && (
+            <div className="mb-4 p-2 bg-green-500 text-white font-bold">Promoted</div>
+          )}
+          {body && (
+            <div>
+              {/* <ReactMarkdown>**A bold text**</ReactMarkdown> */}
+              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown> */}
+              <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown>
+              {/* <div dangerouslySetInnerHTML={{ __html: helpstarter_helpArticleBodyMarkdown.markdown }} /> */}
+            </div>
+          )}
+          {externalArticlePostDate && (
+            <p className="text-sm mt-4 text-gray-500">
+              Original Article Posted: {externalArticlePostDate}
+            </p>
+          )}
+          {externalArticleUpdateDate && (
+            <p className="text-sm text-gray-500">
+              Article Last Updated: {externalArticleUpdateDate}
+            </p>
+          )}
+        </div>
+      </div>
+    );
+  };
 
 export default HelpArticlePage;
