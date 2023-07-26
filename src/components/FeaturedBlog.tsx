@@ -36,14 +36,14 @@ const FeaturedBlog = ({
       alignment="top"
       verticalOnMobile="false"
     >
-      <Link url={`./${slug}`}>
+      {/* <Link url={`./${slug}`}>
         <SquareImage src={src} alt={alt} size="52" hiddenOnMobile={true} />
       </Link>
       <MobileOnlyContainer>
         <Link url={`./${slug}`}>
           <SquareImage src={src} alt={alt} size="20" />
         </Link>
-      </MobileOnlyContainer>
+      </MobileOnlyContainer> */}
       <VerticalStack
         spacing="2"
         topMargin="0"
@@ -52,12 +52,6 @@ const FeaturedBlog = ({
         rightMargin="0"
         alignment="left"
       >
-        <Date
-          date={datePosted}
-          textColor={textColor}
-          textSize="xs"
-          fontWeight="light"
-        />
         <Link url={`./${slug}`}>
           <Paragraph
             value={name}
@@ -65,6 +59,12 @@ const FeaturedBlog = ({
             fontWeight="bold"
             textColor={textColor}
           />
+        <Date
+          date={datePosted}
+          textColor={textColor}
+          textSize="xs"
+          fontWeight="light"
+        />
           <Paragraph
             value={blogStarter_description}
             textSize="base"
