@@ -21,6 +21,8 @@
     "node": ">=17"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
+    "@heroicons/react": "^2.0.18",
     "@yext/analytics": "^0.3.0",
     "@yext/react-components": "^0.0.5",
     "@yext/search-headless-react": "^2.2.0",
