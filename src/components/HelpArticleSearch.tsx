@@ -37,7 +37,7 @@ const HelpArticleVerticalSearch = () => {
                     <div className="flex flex-col rounded border bg-zinc-100 p-4 shadow-sm">
                         <Facets>
                           <StandardFacet
-                          fieldId="c_category"
+                          fieldId="helpstarter_category"
                           transformOptions={(options) =>
                             [...options].sort((a,b) =>
                               a.displayName.localeCompare(b.displayName))

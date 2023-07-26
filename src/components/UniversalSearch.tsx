@@ -7,7 +7,7 @@ import {
   } from "@yext/search-ui-react";
 
   import articleCard from "./ArticleCard";
-  import FAQCard from "./FAQCard";
+  import {FAQCard} from "./FAQCard";
 import { useSearchActions, useSearchState} from "@yext/search-headless-react";
 import { UNIVERSAL_LIMITS } from "../common/consts";
 

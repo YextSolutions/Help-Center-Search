@@ -14,7 +14,7 @@ import {
   useSearchState
   } from "@yext/search-headless-react";
 
-import FAQCard from "./FAQCard";
+import {FAQCard} from "./FAQCard";
 
 const FAQVerticalSearch = () => {
 

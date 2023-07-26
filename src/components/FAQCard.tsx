@@ -1,13 +1,19 @@
-// src/components/Card.tsx
-
 import * as React from "react";
-import { useState } from 'react';
-import { CardProps, DirectAnswer } from "@yext/search-ui-react";
+import { CardProps, useCardAnalyticsCallback, useCardFeedbackCallback } from '@yext/search-ui-react';
+import { useCallback } from 'react';
+import '../styles/resetStyles.css';
 import { provideSearchAnalytics } from "@yext/analytics";
-import { Markdown, LexicalRichText } from "@yext/react-components";
+import { useState } from 'react';
 
-//replace with the vertical typescript interface this custom card applies to
+import { useMemo } from 'react';
 import Faq from "../types/faqs";
+
+const builtInCssClasses = {
+  container: 'mb-4 justify-between rounded-lg border p-4 text-stone-900 shadow-sm',
+  header: 'flex text-neutral-dark',
+  title: 'title text-lg font-semibold text-blue-700 hover:underline cursor-pointer',
+  thumbsFeedbackContainer: 'flex justify-end mt-4 text-sm text-gray-500 font-medium',
+};
 
 import { experienceKey, experienceVersion, businessId } from "../common/consts";
 import { useSearchState } from "@yext/search-headless-react";
@@ -18,21 +24,35 @@ export const searchAnalytics = provideSearchAnalytics({
   businessId: businessId
 })
 
-const FAQCard = ({
-    result,
-    //replace the interface FAQ with the typescript interface of your vertical
-  }: CardProps<Faq>) => {
-    //pull in the relevant fields from your entity to display on the card
-    const data: any = {
-        name: result.rawData.question,
-        answer: result.rawData.answer,
-        // cta1: result.rawData.c_primaryCTA,
-        // cta2: result.rawData.c_secondaryCTA
-    }
+// change to the field name that contains html string
+const htmlFieldName = 'helpstarter_fAQAnswerMarkdown';
+// const name = 'test'
+// this interface is used to expose the field name containing HTML Content to the card
+interface CustomRawDataType {
+  name: string,
+  description: string,
+  [htmlFieldName]: { html: string }
+}
 
-    //replace below with the appropriate vertical key
-    const verticalKey = 'faqs'
+function renderHTMLContent(htmlContent: { __html: string } | undefined) {
+  if ( htmlContent )
+  {
+    return <div className="reset-style" dangerouslySetInnerHTML={htmlContent} />;
+  }
+  return null;
+}
 
+export function FAQCard(props: CardProps<CustomRawDataType>): JSX.Element {
+  const { result } = props;
+  const onClickTitle = useCardAnalyticsCallback(result, 'TITLE_CLICK');
+  const cardFeedbackCallback = useCardFeedbackCallback(result);
+  const onClick = useCallback(() => {
+    cardFeedbackCallback('THUMBS_UP');
+  }, [cardFeedbackCallback]);
+
+  const html: string = result.rawData?.[htmlFieldName]?.html;
+  const htmlContent = useMemo(() => { return { __html: html }; }, [html]);
+  const verticalKey = 'faqs'
     //analytics configuration for the card
     const queryId = useSearchState((state)=>state.query.queryId) || "";
     const fireClick = (id:string,label:string)=>{
@@ -61,27 +81,16 @@ const FAQCard = ({
       setIsCollapsed(!isCollapsed);
     };
 
-    return (
-        <div className="mb-4 justify-between rounded-lg border p-4 text-stone-900 shadow-sm">
-          <div className="body">
-            <div
-              className="title text-lg font-semibold text-blue-700 hover:underline cursor-pointer"
-              onClick={handleToggle}
-            >
-              {data.name}
-              <span
-                className={`arrow ${isCollapsed ? 'down' : 'up'}`}
-                aria-hidden="true"
-              ></span>
-            </div>
-            {!isCollapsed && (
+  return (
+    <div className={builtInCssClasses.container}>
+      <p className={builtInCssClasses.header}>{name}</p>
+      <button onClick={handleToggle} className={builtInCssClasses.title}>{result.rawData.name}</button>
+      {!isCollapsed && (
               <div className="description py-2 justify-between">
-                {data.answer}
+              {renderHTMLContent(htmlContent)}
               </div>
             )}
-          </div>
-        </div>
-      );
-};
-
-export default FAQCard;
+      <button onClick={onClick} className={builtInCssClasses.thumbsFeedbackContainer}>Feedback</button>
+    </div>
+  );
+}
