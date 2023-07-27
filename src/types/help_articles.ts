@@ -6,7 +6,6 @@ export default interface HelpArticle {
 	nudgeEnabled?: boolean,
 	primaryConversationContact?: any,
 	promoted?: boolean,
-	shortDescription?: string,
 	slug?: string,
 	voteCount?: number,
 	voteSum?: number,
