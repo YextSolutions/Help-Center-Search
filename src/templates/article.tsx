@@ -138,7 +138,7 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
           {helpstarter_helpArticleBodyMarkdown && (
             <div>
               {/* <ReactMarkdown>**A bold text**</ReactMarkdown> */}
-              <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown>
+              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown> */}
               {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown> */}
               {/* <div dangerouslySetInnerHTML={{ __html: helpstarter_helpArticleBodyMarkdown.markdown }} /> */}
             </div>
