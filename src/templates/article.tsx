@@ -18,8 +18,7 @@ import {
 import * as React from 'react';
 import "../index.css";
 import { Markdown, LexicalRichText } from "@yext/react-components";
-import ReactDOM from 'react-dom';
-import ReactMarkdown from 'react-markdown';
+import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 
 /**
  * Required when Knowledge Graph Stream is used for a template.
@@ -139,8 +138,8 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
           {helpstarter_helpArticleBodyMarkdown && (
             <div>
               {/* <ReactMarkdown>**A bold text**</ReactMarkdown> */}
-              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown> */}
-              <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown>
+              <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown>
+              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown> */}
               {/* <div dangerouslySetInnerHTML={{ __html: helpstarter_helpArticleBodyMarkdown.markdown }} /> */}
             </div>
           )}
