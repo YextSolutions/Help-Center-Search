@@ -6,7 +6,7 @@ import { provideSearchAnalytics } from "@yext/analytics";
 import { Markdown, LexicalRichText } from "@yext/react-components";
 
 //replace with the vertical typescript interface this custom card applies to
-import HelpArticle from "../types/autogen";
+import {HelpArticle} from "../types/autogen";
 
 import { experienceKey, experienceVersion, businessId } from "../common/consts";
 import { useSearchState } from "@yext/search-headless-react";

@@ -47,10 +47,12 @@ const HelpArticleVerticalSearch = () => {
                         </Facets>
                     </div>
                   </div>
+                  <div className="w-full">
                   <VerticalResults
                   CardComponent={articleCard}
                   displayAllOnNoResults={false}
                   />
+                  </div>
               </div>
               </>
             )}

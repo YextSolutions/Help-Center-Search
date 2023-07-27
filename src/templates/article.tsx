@@ -32,9 +32,7 @@ export const config: TemplateConfig = {
     fields: [ "id", 
               "name",
               "slug", 
-              "body",
               "helpstarter_helpArticleBodyMarkdown", 
-              "shortDescription", 
               "voteCount",
               "voteSum", 
               "promoted", 
@@ -114,9 +112,7 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
 }) => {
   const {
     name,
-    body,
     helpstarter_helpArticleBodyMarkdown,
-    shortDescription,
     voteCount,
     voteSum,
     promoted,
@@ -130,12 +126,6 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
       <div>
         <div className="p-8 my-6 rounded mx-12">
           {name && <h1 className="text-2xl font-bold mb-4">{name}</h1>}
-          {shortDescription && (
-            <div className="callout-box p-6 bg-white rounded-lg shadow-md mb-4">
-              {/* Increased padding (p-6) and smaller drop shadow (shadow-md) */}
-              <p className="text-lg italic">{shortDescription}</p>
-            </div>
-          )}
           {voteCount !== null && voteSum !== null && (
             <div className="flex items-center mb-4">
               <span className="mr-2 text-gray-500">{voteCount} Votes</span>
@@ -146,7 +136,7 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
           {promoted && (
             <div className="mb-4 p-2 bg-green-500 text-white font-bold">Promoted</div>
           )}
-          {body && (
+          {helpstarter_helpArticleBodyMarkdown && (
             <div>
               {/* <ReactMarkdown>**A bold text**</ReactMarkdown> */}
               {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown> */}
