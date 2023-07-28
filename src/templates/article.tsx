@@ -16,9 +16,12 @@ import {
   TemplateRenderProps,
 } from "@yext/pages";
 import * as React from 'react';
+import '../styles/resetStyles.css';
 import "../index.css";
 import { Markdown, LexicalRichText } from "@yext/react-components";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import rehypeRaw from "rehype-raw";
+
 
 /**
  * Required when Knowledge Graph Stream is used for a template.
@@ -136,11 +139,8 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
             <div className="mb-4 p-2 bg-green-500 text-white font-bold">Promoted</div>
           )}
           {helpstarter_helpArticleBodyMarkdown && (
-            <div>
-              {/* <ReactMarkdown>**A bold text**</ReactMarkdown> */}
-              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown> */}
-              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown> */}
-              {/* <div dangerouslySetInnerHTML={{ __html: helpstarter_helpArticleBodyMarkdown.markdown }} /> */}
+           <div className="reset-style">
+              <ReactMarkdown rehypePlugins={[rehypeRaw]}>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown>
             </div>
           )}
           {externalArticlePostDate && (
