@@ -15,10 +15,13 @@ import {
   TemplateProps,
   TemplateRenderProps,
 } from "@yext/pages";
-import * as React from 'react';
+import * as React from "react";
 import "../index.css";
 import { Markdown, LexicalRichText } from "@yext/react-components";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import MainLayout from "../components/MainLayout";
+import ComplexHeader from "../components/ComplexHeader";
+import Footer from "../components/Footer";
 
 /**
  * Required when Knowledge Graph Stream is used for a template.
@@ -28,16 +31,17 @@ export const config: TemplateConfig = {
     $id: "helpArticle",
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
-    fields: [ "id", 
-              "name",
-              "slug", 
-              "helpstarter_helpArticleBodyMarkdown", 
-              "voteCount",
-              "voteSum", 
-              "promoted", 
-              "externalArticlePostDate", 
-              "externalArticleUpdateDate", 
-            ],
+    fields: [
+      "id",
+      "name",
+      "slug",
+      "helpstarter_helpArticleBodyMarkdown",
+      "voteCount",
+      "voteSum",
+      "promoted",
+      "externalArticlePostDate",
+      "externalArticleUpdateDate",
+    ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ["helpArticle"],
@@ -46,7 +50,7 @@ export const config: TemplateConfig = {
     localization: {
       locales: ["en"],
       primary: false,
-    }
+    },
   },
 };
 
@@ -104,10 +108,11 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
  * The props passed in here are the direct stream document defined by `config`.
  */
 
-const HelpArticlePage: Template<TemplateRenderProps> = ({
+const HelpArticlePage: Template<TemplateProps> = ({
   relativePrefixToRoot,
   path,
   document,
+  __meta,
 }) => {
   const {
     name,
@@ -119,43 +124,62 @@ const HelpArticlePage: Template<TemplateRenderProps> = ({
     externalArticleUpdateDate,
   } = document;
 
-  // console.log(helpstarter_helpArticleBodyMarkdown)
-  
   return (
-      <div>
-        <div className="p-8 my-6 rounded mx-12">
-          {name && <h1 className="text-2xl font-bold mb-4">{name}</h1>}
+    <MainLayout templateData={{ __meta, document }} backgroundColor="#FFFFFF">
+      <ComplexHeader
+        backgroundColor="#FFFFFF"
+        textColor="#000000"
+        logo="https://a.mktgcdn.com/p/Y-dxorWO3d3dNLcW0aW6ht5grsUUTyxMwFGzL-4k0GQ/300x300.png"
+        link1="/search"
+        link2="#"
+        link3="#"
+        label1="Search"
+        label2="Submit Request"
+        label3="Contact Us"
+        companyScreenReaderText="Yext"
+        hoverColor="light"
+      />
+      <div className="prose-lg max-w-5xl mx-auto">
+        <div className="p-8 my-6 mx-12">
+          <h1 className="mb-4">{name}</h1>
           {voteCount !== null && voteSum !== null && (
             <div className="flex items-center mb-4">
               <span className="mr-2 text-gray-500">{voteCount} Votes</span>
               <span className="text-gray-500">|</span>
-              <span className="ml-2 text-gray-500">Total Vote Sum: {voteSum}</span>
+              <span className="ml-2 text-gray-500">
+                Total Vote Sum: {voteSum}
+              </span>
             </div>
           )}
           {promoted && (
-            <div className="mb-4 p-2 bg-green-500 text-white font-bold">Promoted</div>
-          )}
-          {helpstarter_helpArticleBodyMarkdown && (
-            <div>
-              {/* <ReactMarkdown>**A bold text**</ReactMarkdown> */}
-              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown}</ReactMarkdown> */}
-              {/* <ReactMarkdown>{helpstarter_helpArticleBodyMarkdown.markdown}</ReactMarkdown> */}
-              {/* <div dangerouslySetInnerHTML={{ __html: helpstarter_helpArticleBodyMarkdown.markdown }} /> */}
+            <div className="mb-4 p-2 bg-green-500 text-white font-bold">
+              Promoted
             </div>
           )}
-          {externalArticlePostDate && (
-            <p className="text-sm mt-4 text-gray-500">
-              Original Article Posted: {externalArticlePostDate}
-            </p>
-          )}
-          {externalArticleUpdateDate && (
-            <p className="text-sm text-gray-500">
-              Article Last Updated: {externalArticleUpdateDate}
-            </p>
-          )}
+          <Markdown content={helpstarter_helpArticleBodyMarkdown.markdown} />
+          <p className="text-sm mt-4 text-gray-500">
+            Original Article Posted: {externalArticlePostDate}
+          </p>
+          <p className="text-sm text-gray-500">
+            Article Last Updated: {externalArticleUpdateDate}
+          </p>
         </div>
       </div>
-    );
-  };
+      <Footer
+        label1="Privacy"
+        link1="#"
+        label2="Terms"
+        link2="#"
+        label3="Settings"
+        link3="#"
+        label4="Help"
+        link4="#"
+        backgroundColor="#FFFFFF"
+        textColor="#000000"
+        hoverColor="light"
+      />
+    </MainLayout>
+  );
+};
 
 export default HelpArticlePage;
